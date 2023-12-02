@@ -36,15 +36,14 @@ u(:,1)= f;
 udata=u(:,1);
 tdata=0;
 
-for m = 2:Mt
-    t = (m-1)*dt;                    % current time
-       for n=2:N% interior nodes
-	        u(n,m) = u(n,m-1) + 0.5*mu*(u(n+1,m-1)-u(n-1,m-1));
+for m = 2:Mt                  
+       for n=2:N
+	        u(n,m) = u(n,m-1) - mu*(u(n,m-1)-u(n-1,m-1));
        end
-    u(1,m) = u(N,m);       % left-end
-    u(N+1,m) = u(2,m);     % right-end
+    u(1,m) = u(N,m);  
+    u(N+1,m) = u(2,m); 
     figure(1)
-	 plot(x,u(:,m),'b-');
+	plot(x,u(:,m),'b-');
     ylim([-0.5,1.5])
     xlabel('x')
     ylabel('u')
@@ -52,11 +51,6 @@ for m = 2:Mt
     title(sprintf('t=%5.2f',t))
     hold off
 
-    drawnow
-    if mod(m,40)==0
-      udata = [udata u(:,m)];
-      tdata = [tdata m*dt];
-    end
 end
 tmax=Mt*dt;
 figure(2)
@@ -68,4 +62,3 @@ xlabel('x')
 ylabel('t')
 zlabel('u')
 grid off 
-
