@@ -2,7 +2,6 @@ clc;
 clear all;
 close all
 
-
 h=.125
 t=0.0:h:1.0
 y=zeros(size(t));       %Euler's method approximation
