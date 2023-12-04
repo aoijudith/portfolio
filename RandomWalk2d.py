@@ -13,9 +13,11 @@ for i in range(1,N):
     dx=r.randint(-1,1)
     dy=r.randint(-1,1)
     L=m.sqrt(dx**2+dy**2)
-    while L>0:
+    if L>0:
         x[i]=x[i-1]+dx/L
         y[i]=y[i-1]+dy/L
+    else:
+        continue;
 
 
 mpl.rcParams['lines.linewidth'] = 0.5
